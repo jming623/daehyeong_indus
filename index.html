@@ -229,19 +229,19 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <span class="contact-label">전화</span>
-                            <span class="contact-value">02-1234-5678</span>
+                            <span class="contact-value" id="contact-phone">-</span>
                         </div>
                         <div class="contact-item">
                             <span class="contact-label">팩스</span>
-                            <span class="contact-value">02-1234-5679</span>
+                            <span class="contact-value" id="contact-fax">-</span>
                         </div>
                         <div class="contact-item">
                             <span class="contact-label">이메일</span>
-                            <span class="contact-value">info@daehyung.co.kr</span>
+                            <span class="contact-value" id="contact-email">-</span>
                         </div>
                         <div class="contact-item">
                             <span class="contact-label">주소</span>
-                            <span class="contact-value">서울특별시 강남구 테헤란로 123, 대형빌딩 5층</span>
+                            <span class="contact-value" id="contact-address">-</span>
                         </div>
                     </div>
                 </div>
@@ -249,22 +249,27 @@
                     <div class="form-group">
                         <label for="name" class="form-label">담당자명</label>
                         <input type="text" id="name" name="name" class="form-input" required>
+                        <span class="form-error" id="name-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="company" class="form-label">기관/회사명</label>
                         <input type="text" id="company" name="company" class="form-input" required>
+                        <span class="form-error" id="company-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">이메일</label>
                         <input type="email" id="email" name="email" class="form-input" required>
+                        <span class="form-error" id="email-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="phone" class="form-label">연락처</label>
-                        <input type="tel" id="phone" name="phone" class="form-input">
+                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                        <span class="form-error" id="phone-error"></span>
                     </div>
                     <div class="form-group form-group-full">
                         <label for="message" class="form-label">문의내용</label>
                         <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
+                        <span class="form-error" id="message-error"></span>
                     </div>
                     <button type="submit" class="form-submit">문의하기</button>
                 </form>
@@ -291,6 +296,10 @@
         </div>
     </footer>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- EmailJS 설정 파일 (Git에 커밋되지 않음) -->
+    <script src="js/config.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -25,6 +25,7 @@
         setupScrollHandler();
         setupMobileMenu();
         setupSmoothScroll();
+        setupContactInfo();
         setupContactForm();
         setupScrollReveal();
         setupActiveNavigation();
@@ -123,51 +124,199 @@
     }
 
     /**
-     * Contact form handling
+     * 연락처 정보 설정 (config.js에서 가져옴)
+     */
+    function setupContactInfo() {
+        if (typeof COMPANY_CONTACT === 'undefined') {
+            console.warn('회사 연락처 정보가 설정되지 않았습니다. config.js에 COMPANY_CONTACT를 추가해주세요.');
+            return;
+        }
+
+        // 연락처 정보를 동적으로 채움
+        const phoneElement = document.getElementById('contact-phone');
+        const faxElement = document.getElementById('contact-fax');
+        const emailElement = document.getElementById('contact-email');
+        const addressElement = document.getElementById('contact-address');
+
+        if (phoneElement) phoneElement.textContent = COMPANY_CONTACT.phone || '-';
+        if (faxElement) faxElement.textContent = COMPANY_CONTACT.fax || '-';
+        if (emailElement) emailElement.textContent = COMPANY_CONTACT.email || '-';
+        if (addressElement) addressElement.textContent = COMPANY_CONTACT.address || '-';
+    }
+
+    /**
+     * Contact form handling with EmailJS
      */
     function setupContactForm() {
         if (!contactForm) return;
 
+        // EmailJS 초기화
+        // config.js 파일에서 설정을 가져옵니다
+        if (typeof EMAILJS_CONFIG === 'undefined') {
+            console.error('EmailJS 설정 파일(config.js)을 찾을 수 없습니다.');
+            showNotification('설정 파일이 없습니다. config.example.js를 참고하여 config.js를 생성해주세요.', 'error');
+            return;
+        }
+
+        emailjs.init(EMAILJS_CONFIG.publicKey);
         contactForm.addEventListener('submit', handleFormSubmit);
+        setupFieldValidation();
     }
 
     function handleFormSubmit(e) {
         e.preventDefault();
 
+        // 모든 에러 표시 제거
+        clearFormErrors();
+
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
-        // Validate required fields
-        if (!data.name || !data.company || !data.email || !data.message) {
+        // 필수 필드 검증
+        let hasError = false;
+        const requiredFields = [
+            { id: 'name', value: data.name, message: '담당자명을 입력해 주세요.' },
+            { id: 'company', value: data.company, message: '기관/회사명을 입력해 주세요.' },
+            { id: 'email', value: data.email, message: '이메일을 입력해 주세요.' },
+            { id: 'phone', value: data.phone, message: '연락처를 입력해 주세요.' },
+            { id: 'message', value: data.message, message: '문의내용을 입력해 주세요.' }
+        ];
+
+        requiredFields.forEach(field => {
+            if (!field.value || field.value.trim() === '') {
+                showFieldError(field.id, field.message);
+                hasError = true;
+            }
+        });
+
+        // 이메일 형식 검증
+        if (data.email && !isValidEmail(data.email)) {
+            showFieldError('email', '올바른 이메일 주소를 입력해 주세요.');
+            hasError = true;
+        }
+
+        if (hasError) {
             showNotification('모든 필수 항목을 입력해 주세요.', 'error');
+            // 첫 번째 에러 필드로 스크롤
+            const firstErrorField = document.querySelector('.form-input.error, .form-textarea.error');
+            if (firstErrorField) {
+                firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstErrorField.focus();
+            }
             return;
         }
 
-        // Email validation
-        if (!isValidEmail(data.email)) {
-            showNotification('올바른 이메일 주소를 입력해 주세요.', 'error');
-            return;
-        }
-
-        // Simulate form submission
         const submitBtn = contactForm.querySelector('.form-submit');
         const originalText = submitBtn.textContent;
 
         submitBtn.textContent = '전송 중...';
         submitBtn.disabled = true;
 
-        // Simulate API call
-        setTimeout(() => {
+        // EmailJS를 통한 이메일 전송
+        // config.js 파일에서 Service ID와 Template ID를 가져옵니다
+        emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateId,
+            {
+                name: data.name,
+                company: data.company,
+                email: data.email,
+                phone: data.phone || '미입력',
+                message: data.message,
+                date: new Date().toLocaleString('ko-KR')
+            }
+        )
+        .then(() => {
             showNotification('문의가 성공적으로 전송되었습니다. 담당자가 곧 연락드리겠습니다.', 'success');
             contactForm.reset();
+            clearFormErrors();
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-        }, 1500);
+        })
+        .catch((error) => {
+            console.error('EmailJS Error:', error);
+            showNotification('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
     }
 
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
+    }
+
+    /**
+     * 필드 에러 표시
+     */
+    function showFieldError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const errorElement = document.getElementById(`${fieldId}-error`);
+
+        if (field) {
+            field.classList.add('error');
+        }
+
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    }
+
+    /**
+     * 모든 필드 에러 제거
+     */
+    function clearFormErrors() {
+        const errorFields = contactForm.querySelectorAll('.form-input.error, .form-textarea.error');
+        const errorMessages = contactForm.querySelectorAll('.form-error');
+
+        errorFields.forEach(field => {
+            field.classList.remove('error');
+        });
+
+        errorMessages.forEach(error => {
+            error.textContent = '';
+            error.style.display = 'none';
+        });
+    }
+
+    /**
+     * 입력 시 에러 제거 (실시간 검증)
+     */
+    function setupFieldValidation() {
+        const formFields = contactForm.querySelectorAll('.form-input, .form-textarea');
+        
+        formFields.forEach(field => {
+            field.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    this.classList.remove('error');
+                    const errorElement = document.getElementById(`${this.id}-error`);
+                    if (errorElement) {
+                        errorElement.textContent = '';
+                        errorElement.style.display = 'none';
+                    }
+                }
+            });
+
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    const fieldId = this.id;
+                    const fieldMessages = {
+                        'name': '담당자명을 입력해 주세요.',
+                        'company': '기관/회사명을 입력해 주세요.',
+                        'email': '이메일을 입력해 주세요.',
+                        'phone': '연락처를 입력해 주세요.',
+                        'message': '문의내용을 입력해 주세요.'
+                    };
+                    
+                    if (fieldId === 'email' && this.value && !isValidEmail(this.value)) {
+                        showFieldError(fieldId, '올바른 이메일 주소를 입력해 주세요.');
+                    } else if (!this.value.trim()) {
+                        showFieldError(fieldId, fieldMessages[fieldId] || '필수 항목입니다.');
+                    }
+                }
+            });
+        });
     }
 
     function showNotification(message, type) {
