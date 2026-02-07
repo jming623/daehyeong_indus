@@ -154,7 +154,7 @@
         // config.js 파일에서 설정을 가져옵니다
         if (typeof EMAILJS_CONFIG === 'undefined') {
             console.error('EmailJS 설정 파일(config.js)을 찾을 수 없습니다.');
-            showNotification('설정 파일이 없습니다. config.example.js를 참고하여 config.js를 생성해주세요.', 'error');
+            showNotification('현재 문의 기능을 사용할 수 없습니다. 전화 또는 이메일로 문의해 주세요.', 'error');
             return;
         }
 

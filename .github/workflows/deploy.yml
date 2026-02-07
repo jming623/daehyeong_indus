@@ -20,7 +20,7 @@ jobs:
 
       - name: Generate config.js
         run: |
-          cat > js/config.js << 'HEREDOC'
+          cat > js/config.js <<'EOF'
           const EMAILJS_CONFIG = {
               publicKey: '${{ secrets.EMAILJS_PUBLIC_KEY }}',
               serviceId: '${{ secrets.EMAILJS_SERVICE_ID }}',
@@ -33,7 +33,10 @@ jobs:
               email: '${{ secrets.COMPANY_EMAIL }}',
               address: '${{ secrets.COMPANY_ADDRESS }}'
           };
-          HEREDOC
+          EOF
+
+      - name: Verify config.js
+        run: cat js/config.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
