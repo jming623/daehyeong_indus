@@ -16,14 +16,13 @@
     <header class="header" id="header">
         <div class="header-container">
             <a href="#" class="logo">
-                <span class="logo-text">대형산업</span>
+                <img src="resources/로고.png" alt="대형산업" class="logo-img">
             </a>
             <nav class="nav" id="nav">
                 <ul class="nav-list">
                     <li><a href="#about" class="nav-link">회사소개</a></li>
-                    <li><a href="#technology" class="nav-link">기술</a></li>
                     <li><a href="#products" class="nav-link">제품</a></li>
-                    <li><a href="#applications" class="nav-link">적용분야</a></li>
+                    <li><a href="#installations" class="nav-link">설치실적</a></li>
                     <li><a href="#contact" class="nav-link">문의</a></li>
                 </ul>
             </nav>
@@ -37,14 +36,16 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-background">
-            <img src="images/hero/hero-technology.jpg" alt="정밀 계측 기술" class="hero-image">
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title">정밀한 계측,<br>신뢰할 수 있는 데이터</h1>
-            <p class="hero-subtitle">대형산업은 지진계측 분야의 기술력으로<br>대한민국의 안전 인프라를 지원합니다.</p>
-            <a href="#contact" class="hero-cta">문의하기</a>
+        <div class="hero-inner">
+            <p class="hero-label">Earthquake Measuring Solution</p>
+            <div class="hero-brand">
+                <span class="hero-brand-s">S</span>EISMOMETER
+            </div>            
+            <h1 class="hero-headline">재난은 지진으로<br>끝나지 않습니다</h1>
+            <ul class="hero-features">
+                <li>지진·화산 재해대책법 시스템 구축</li>
+                <li>초고층 및 지하연계 복합 건축물 재난관리에 관한 특별법 시스템 구축</li>
+            </ul>
         </div>
     </section>
 
@@ -87,42 +88,6 @@
         </div>
     </section>
 
-    <!-- Technology Section -->
-    <section class="section technology" id="technology">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">기술</h2>
-                <p class="section-subtitle">Technology</p>
-            </div>
-            <div class="technology-grid">
-                <div class="tech-card">
-                    <div class="tech-image-wrapper">
-                        <img src="images/technology/tech-precision.jpg" alt="정밀 센서 기술" class="tech-image">
-                    </div>
-                    <div class="tech-content">
-                        <h3 class="tech-title">고정밀 센서 기술</h3>
-                        <p class="tech-description">
-                            0.001gal 수준의 미세 진동까지 감지하는 고감도 센서를 자체 개발합니다.
-                            넓은 주파수 대역과 낮은 노이즈 특성으로 정확한 데이터를 제공합니다.
-                        </p>
-                    </div>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-image-wrapper">
-                        <img src="images/technology/tech-circuit.jpg" alt="신호 처리 기술" class="tech-image">
-                    </div>
-                    <div class="tech-content">
-                        <h3 class="tech-title">디지털 신호 처리</h3>
-                        <p class="tech-description">
-                            24비트 고해상도 ADC와 실시간 디지털 필터링 기술을 적용합니다.
-                            현장 노이즈를 효과적으로 제거하고 순수한 지진 신호만을 추출합니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Products Section -->
     <section class="section products" id="products">
         <div class="container">
@@ -130,82 +95,269 @@
                 <h2 class="section-title">제품</h2>
                 <p class="section-subtitle">Products</p>
             </div>
-            <div class="products-showcase">
-                <div class="product-main">
-                    <img src="images/products/product-equipment.jpg" alt="지진계측 시스템" class="product-image">
-                </div>
-                <div class="product-list">
-                    <div class="product-item">
-                        <h3 class="product-name">DH-3000 시리즈</h3>
-                        <p class="product-spec">고정밀 강진계</p>
-                        <p class="product-desc">
-                            구조물 내진 성능 평가 및 지진 조기경보 시스템에 적합한 강진계입니다.
-                            IP67 등급의 방진방수 설계로 열악한 환경에서도 안정적으로 운영됩니다.
-                        </p>
-                    </div>
-                    <div class="product-item">
-                        <h3 class="product-name">DH-5000 시리즈</h3>
-                        <p class="product-spec">광대역 지진계</p>
-                        <p class="product-desc">
-                            지진 관측소 및 연구 기관용 광대역 지진계입니다.
-                            0.01Hz~100Hz의 넓은 주파수 범위에서 평탄한 응답 특성을 보입니다.
-                        </p>
-                    </div>
-                    <div class="product-item">
-                        <h3 class="product-name">DH-R 시리즈</h3>
-                        <p class="product-spec">데이터 수집 장치</p>
-                        <p class="product-desc">
-                            다채널 동시 수집이 가능한 데이터 로거입니다.
-                            GPS 시각 동기화와 원격 데이터 전송 기능을 지원합니다.
-                        </p>
-                    </div>
+        </div>
+        <div class="products-marquee">
+
+            <!-- Row 1: 좌 → 우 (product_1 ~ product_8) -->
+            <div class="marquee-row marquee-row--ltr">
+                <div class="marquee-track">
+                    <div class="marquee-item"><img src="images/products/product_1.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_2.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_3.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_4.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_5.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_6.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_7.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_8.png" alt="제품"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="marquee-item"><img src="images/products/product_1.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_2.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_3.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_4.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_5.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_6.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_7.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_8.png" alt="제품"></div>
                 </div>
             </div>
+
+            <!-- Row 2: 우 → 좌 (product_9 ~ product_16) -->
+            <div class="marquee-row marquee-row--rtl">
+                <div class="marquee-track">
+                    <div class="marquee-item"><img src="images/products/product_9.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_10.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_11.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_12.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_13.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_14.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_15.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_16.png" alt="제품"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="marquee-item"><img src="images/products/product_9.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_10.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_11.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_12.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_13.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_14.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_15.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_16.png" alt="제품"></div>
+                </div>
+            </div>
+
+            <!-- Row 3: 좌 → 우 (product_17 ~ product_24) -->
+            <div class="marquee-row marquee-row--ltr">
+                <div class="marquee-track">
+                    <div class="marquee-item"><img src="images/products/product_17.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_18.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_19.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_20.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_21.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_22.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_23.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_24.png" alt="제품"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="marquee-item"><img src="images/products/product_17.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_18.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_19.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_20.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_21.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_22.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_23.png" alt="제품"></div>
+                    <div class="marquee-item"><img src="images/products/product_24.png" alt="제품"></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Applications Section -->
-    <section class="section applications" id="applications">
+    <!-- Installations Section -->
+    <section class="section installations" id="installations">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">적용분야</h2>
-                <p class="section-subtitle">Applications</p>
+                <h2 class="section-title">설치 실적</h2>
+                <p class="section-subtitle">Clients &amp; Installations</p>
             </div>
-            <div class="applications-grid">
-                <div class="app-card">
-                    <div class="app-image-wrapper">
-                        <img src="images/applications/app-infrastructure.jpg" alt="사회기반시설 모니터링" class="app-image">
-                    </div>
-                    <div class="app-content">
-                        <h3 class="app-title">사회기반시설 모니터링</h3>
-                        <p class="app-description">
-                            교량, 댐, 터널 등 주요 사회기반시설의 구조 건전성을 실시간으로 모니터링합니다.
-                            지진 발생 시 즉각적인 안전 진단 데이터를 제공합니다.
-                        </p>
-                    </div>
+
+            <div class="install-tabs">
+                <div class="install-tab-nav" role="tablist">
+                    <button class="install-tab-btn active" data-tab="enterprise" role="tab">민간대기업</button>
+                    <button class="install-tab-btn" data-tab="highrise" role="tab">초고층빌딩</button>
+                    <button class="install-tab-btn" data-tab="government" role="tab">지방자치단체</button>
+                    <button class="install-tab-btn" data-tab="research" role="tab">연구소</button>
+                    <button class="install-tab-btn" data-tab="public" role="tab">정부종합청사</button>
+                    <button class="install-tab-btn" data-tab="airport" role="tab">공항·터미널</button>
+                    <button class="install-tab-btn" data-tab="university" role="tab">국립대학교</button>
+                    <button class="install-tab-btn" data-tab="overseas" role="tab">해외 수출</button>
                 </div>
-                <div class="app-card">
-                    <div class="app-image-wrapper">
-                        <img src="images/applications/app-construction.jpg" alt="건설 현장 계측" class="app-image">
+
+                <div class="install-tab-body">
+                    <div class="install-tab-panel active" id="tab-enterprise">
+                        <div class="install-chip-list">
+                            <span class="install-chip">삼성전자 본사</span>
+                            <span class="install-chip">삼성전자 광주 반도체공장</span>
+                            <span class="install-chip">삼성전자 온양 반도체공장</span>
+                            <span class="install-chip">삼성전자 구미 반도체공장</span>
+                            <span class="install-chip">삼성전자 구미 전산센터</span>
+                            <span class="install-chip">삼성전자 영덕 연수원</span>
+                            <span class="install-chip">삼성SDI 구미공장</span>
+                            <span class="install-chip">에버랜드</span>
+                            <span class="install-chip">LG 파주 반도체공장</span>
+                            <span class="install-chip">LG 구미 반도체공장</span>
+                            <span class="install-chip">LG하우시스 울산</span>
+                            <span class="install-chip">LG하우시스 옥산</span>
+                            <span class="install-chip">현대자동차 양재본사</span>
+                            <span class="install-chip">현대자동차 울산공장</span>
+                            <span class="install-chip">현대자동차 대산공장</span>
+                            <span class="install-chip">포항현대제철</span>
+                            <span class="install-chip">현대엘리베이터</span>
+                            <span class="install-chip">SK hynix 이천 반도체공장</span>
+                            <span class="install-chip">SK hynix 청주 반도체공장</span>
+                            <span class="install-chip">SK에너지 여수</span>
+                            <span class="install-chip">SK이노베이션</span>
+                            <span class="install-chip">POSCO 포항본사</span>
+                            <span class="install-chip">POSCO 정압소 (2곳)</span>
+                            <span class="install-chip">POSCO 열병합발전소</span>
+                            <span class="install-chip">롯데월드</span>
+                            <span class="install-chip">롯데백화점 소공동 외 18곳</span>
+                            <span class="install-chip">롯데마트 잠실 외 7곳</span>
+                            <span class="install-chip">롯데정보통신 서울</span>
+                            <span class="install-chip">롯데정보통신 용인</span>
+                            <span class="install-chip">롯데정보통신 대전</span>
+                        </div>
                     </div>
-                    <div class="app-content">
-                        <h3 class="app-title">건설 현장 계측</h3>
-                        <p class="app-description">
-                            발파, 항타 등 건설 작업으로 인한 진동을 측정하고 관리합니다.
-                            인근 구조물과 민원 관리를 위한 객관적인 데이터를 기록합니다.
-                        </p>
+
+                    <div class="install-tab-panel" id="tab-highrise">
+                        <div class="install-chip-list">
+                            <span class="install-chip">63빌딩</span>
+                            <span class="install-chip">코엑스</span>
+                            <span class="install-chip">여의도 IFC</span>
+                            <span class="install-chip">강남 GFC</span>
+                            <span class="install-chip">정경련회관</span>
+                            <span class="install-chip">대구무역센터</span>
+                            <span class="install-chip">부산국제빌딩</span>
+                            <span class="install-chip">신도림 디큐브시티</span>
+                            <span class="install-chip">강남도시공항타워</span>
+                            <span class="install-chip">SC스탠다드차타드 본점</span>
+                            <span class="install-chip">LH 신사옥(진주)</span>
+                            <span class="install-chip">교보생명빌딩(서울)</span>
+                            <span class="install-chip">교보생명빌딩(대전)</span>
+                            <span class="install-chip">교보생명빌딩(대구)</span>
+                            <span class="install-chip">동탄 메트로폴리스</span>
+                            <span class="install-chip">천안 펜타포트</span>
+                            <span class="install-chip">부산 해운대 힐스테이트위브</span>
+                            <span class="install-chip">해운대 I'PARK</span>
+                            <span class="install-chip">해운대 힐스테이트</span>
+                            <span class="install-chip">대구 두산위브더제니스</span>
+                            <span class="install-chip">울산 태화강 엑소디움</span>
+                            <span class="install-chip">태화강 엘리시움</span>
+                            <span class="install-chip">인천 청라푸르지오</span>
+                            <span class="install-chip">청라 엑슬루타워</span>
+                            <span class="install-chip">청라 더샵레이크파크</span>
+                            <span class="install-chip">청라 롯데캐슬</span>
+                            <span class="install-chip">학의 엑슬루타워</span>
+                            <span class="install-chip">용현 엑슬루타워</span>
+                            <span class="install-chip">용현동 롯데캐슬</span>
+                            <span class="install-chip">창원 메트로씨티 2차</span>
+                            <span class="install-chip">부산 더샵센트럴스타</span>
+                            <span class="install-chip">부산 더샵센텀스타</span>
+                            <span class="install-chip">부산 더샵센텀파크 1차</span>
+                            <span class="install-chip">광주 현대힐스테이트리버파크</span>
+                            <span class="install-chip">부전동 삼한골든뷰센트럴파크</span>
+                            <span class="install-chip">아카데미스위트</span>
+                            <span class="install-chip">SK 대구수성 리더스뷰</span>
+                            <span class="install-chip">한화 에코메트로</span>
+                        </div>
                     </div>
-                </div>
-                <div class="app-card">
-                    <div class="app-image-wrapper">
-                        <img src="images/hero/hero-data.jpg" alt="지진 연구 관측" class="app-image">
+
+                    <div class="install-tab-panel" id="tab-government">
+                        <div class="install-chip-list">
+                            <span class="install-chip">강남구청</span>
+                            <span class="install-chip">관악구청</span>
+                            <span class="install-chip">안성시청</span>
+                            <span class="install-chip">영월군청</span>
+                            <span class="install-chip">제천시청</span>
+                            <span class="install-chip">인제군청</span>
+                            <span class="install-chip">정선군청</span>
+                            <span class="install-chip">상주시청</span>
+                            <span class="install-chip">거창군청</span>
+                            <span class="install-chip">평택시청</span>
+                            <span class="install-chip">평창군청</span>
+                            <span class="install-chip">동두천시청</span>
+                            <span class="install-chip">의왕시청</span>
+                            <span class="install-chip">하남시청</span>
+                            <span class="install-chip">과천시청</span>
+                            <span class="install-chip">포천시청</span>
+                            <span class="install-chip">목포시청</span>
+                            <span class="install-chip">광명시청</span>
+                            <span class="install-chip">청주시청</span>
+                            <span class="install-chip">시흥시청</span>
+                            <span class="install-chip">원주시청</span>
+                            <span class="install-chip">영주시청</span>
+                            <span class="install-chip">군포시청</span>
+                            <span class="install-chip">임실군청</span>
+                            <span class="install-chip">안산시청</span>
+                            <span class="install-chip">구리시청</span>
+                            <span class="install-chip">여수시청</span>
+                        </div>
                     </div>
-                    <div class="app-content">
-                        <h3 class="app-title">지진 연구 관측</h3>
-                        <p class="app-description">
-                            기상청, 대학 연구소 등에 연구용 지진 관측 장비를 공급합니다.
-                            지진 발생 메커니즘 연구와 지진 조기경보 시스템 구축에 기여합니다.
-                        </p>
+
+                    <div class="install-tab-panel" id="tab-research">
+                        <div class="install-chip-list">
+                            <span class="install-chip">한국표준과학연구원</span>
+                            <span class="install-chip">한국해양연구원</span>
+                            <span class="install-chip">한국핵융합연구소</span>
+                            <span class="install-chip">한국전력연구원</span>
+                            <span class="install-chip">한국원자력연구원</span>
+                            <span class="install-chip">현대자동차 남양연구소</span>
+                        </div>
+                    </div>
+
+                    <div class="install-tab-panel" id="tab-public">
+                        <div class="install-chip-list">
+                            <span class="install-chip">서울 정부종합청사</span>
+                            <span class="install-chip">과천 정부종합청사</span>
+                            <span class="install-chip">대전 정부종합청사</span>
+                            <span class="install-chip">광주 정부종합청사</span>
+                            <span class="install-chip">춘천 정부종합청사</span>
+                            <span class="install-chip">제주 정부종합청사</span>
+                            <span class="install-chip">세종시 임차 청사</span>
+                        </div>
+                    </div>
+
+                    <div class="install-tab-panel" id="tab-airport">
+                        <div class="install-chip-list">
+                            <span class="install-chip">인천공항 제1여객터미널</span>
+                            <span class="install-chip">인천공항 제2여객터미널</span>
+                            <span class="install-chip">부산국제여객터미널</span>
+                            <span class="install-chip">한국공항공사</span>
+                            <span class="install-chip">제주국제여객터미널</span>
+                        </div>
+                    </div>
+
+                    <div class="install-tab-panel" id="tab-university">
+                        <div class="install-chip-list">
+                            <span class="install-chip">강원대학교</span>
+                            <span class="install-chip">충북대학교</span>
+                            <span class="install-chip">KAIST</span>
+                            <span class="install-chip">전남대학교</span>
+                            <span class="install-chip">순천대학교</span>
+                            <span class="install-chip">목포대학교</span>
+                            <span class="install-chip">공주대학교</span>
+                            <span class="install-chip">경상대학교</span>
+                            <span class="install-chip">청주교육대학교</span>
+                        </div>
+                    </div>
+
+                    <div class="install-tab-panel" id="tab-overseas">
+                        <div class="install-chip-list">
+                            <span class="install-chip">중국 시안</span>
+                            <span class="install-chip">중국 소주</span>
+                            <span class="install-chip">인도네시아</span>
+                            <span class="install-chip">베트남</span>
+                            <span class="install-chip">인도 삼성전자 반도체공장</span>
+                            <span class="install-chip">페루 칼파 열병합발전소 (POSCO)</span>
+                            <span class="install-chip">말레이시아 원자력연구원</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -283,13 +435,12 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <span class="footer-logo">대형산업</span>
-                    <p class="footer-copyright">© 2024 대형산업. All rights reserved.</p>
+                    <p class="footer-copyright">© 2025 대형산업. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#about">회사소개</a>
-                    <a href="#technology">기술</a>
                     <a href="#products">제품</a>
-                    <a href="#applications">적용분야</a>
+                    <a href="#installations">설치실적</a>
                     <a href="#contact">문의</a>
                 </div>
             </div>

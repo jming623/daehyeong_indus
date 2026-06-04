@@ -19,3 +19,7 @@ npm-debug.log*
 # 임시 파일
 *.tmp
 *.temp
+
+# 기타
+resources/*
+docs/*

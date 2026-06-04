@@ -1,0 +1,39 @@
+{
+  "respectGitignore": false,
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew build *)",
+      "Bash(./gradlew test *)",
+      "Bash(find build/classes/kotlin/test -name \"*.class\")",
+      "Bash(ls build/classes/kotlin/test/com/ordiotz/beauty_me/)",
+      "Bash(cat build/test-results/test/*.xml)",
+      "Bash(./gradlew dependencies *)",
+      "Bash(jar tf *)",
+      "Bash(curl -s \"https://services.gradle.org/versions/current\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('version','unknown'\\)\\)\")",
+      "Bash(./gradlew --version)",
+      "Bash(javap -v \"C:\\\\Users\\\\ctrlz\\\\OneDrive\\\\Desktop\\\\개발\\\\beauty-server\\\\build\\\\classes\\\\kotlin\\\\test\\\\com\\\\ordiotz\\\\beauty_me\\\\BeautyMeApplicationTests.class\")",
+      "Bash(./gradlew clean *)",
+      "Bash(./gradlew help *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ctrlz\\\\OneDrive\\\\Desktop\\\\code\\\\beauty-server\" -Recurse)",
+      "Bash(Select-Object FullName)",
+      "PowerShell(head *)",
+      "Bash(not exist *)",
+      "PowerShell(New-Item *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ctrlz\\\\OneDrive\\\\Desktop\\\\code\\\\beauty-server\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\ctrlz\\\\OneDrive\\\\Desktop\\\\code\\\\beauty-server\\\\src\\\\main\\\\kotlin\" -Recurse | Where-Object { $_.PSIsContainer -eq $false } | Select-Object -ExpandProperty FullName | Sort-Object)",
+      "Skill(update-config)",
+      "Bash(Get-ChildItem -Recurse -File -Name)",
+      "Bash(./gradlew compileKotlin)"
+    ],
+    "deny": [
+      "Read(**.env)",
+      "Read(**.env.*)",
+      "Bash(cat **.env)",
+      "Bash(cat **.env.*)"
+    ],
+    "defaultMode": "bypassPermissions"
+  }
+}
