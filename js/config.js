@@ -5,7 +5,7 @@ const EMAILJS_CONFIG = {
 };
 
 const COMPANY_CONTACT = {
-    phone: '02-1234-5678',    
-    email: 'info@daehyung.co.kr',
-    address: '서울특별시 강남구 테헤란로 123, 대형빌딩 5층'
+    phone: '010-4149-5332',    
+    email: 'parknisco@naver.com',
+    address: '충북 단양군 매포읍 평동로 132'
 };
