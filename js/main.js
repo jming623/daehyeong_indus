@@ -451,7 +451,7 @@
             nextBtn.disabled = num >= (pdfDoc ? pdfDoc.numPages : 1);
         }
 
-        pdfjsLib.getDocument('resources/daehyung.pdf').promise.then(function(doc) {
+        pdfjsLib.getDocument('images/daehyung.pdf').promise.then(function(doc) {
             pdfDoc = doc;
             totalPagesEl.textContent = doc.numPages;
             slider.max = doc.numPages;
