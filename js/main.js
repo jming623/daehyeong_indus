@@ -30,6 +30,7 @@
         setupScrollReveal();
         setupActiveNavigation();
         setupInstallTabs();
+        setupPdfCarousel();
     }
 
     /**
@@ -386,6 +387,103 @@
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);
         });
+    }
+
+    /**
+     * PDF Carousel Viewer (PDF.js)
+     */
+    function setupPdfCarousel() {
+        if (typeof pdfjsLib === 'undefined') return;
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const canvas = document.getElementById('pdfCanvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const loading = document.getElementById('pdfLoading');
+        const currentPageEl = document.getElementById('pdfCurrentPage');
+        const totalPagesEl = document.getElementById('pdfTotalPages');
+        const prevBtn = document.getElementById('pdfPrev');
+        const nextBtn = document.getElementById('pdfNext');
+        const slider = document.getElementById('pdfSlider');
+
+        let pdfDoc = null;
+        let currentPage = 1;
+        let rendering = false;
+        let pendingPage = null;
+
+        function renderPage(num) {
+            if (rendering) { pendingPage = num; return; }
+            rendering = true;
+            loading.style.display = 'flex';
+            canvas.style.display = 'none';
+
+            pdfDoc.getPage(num).then(function(page) {
+                const wrap = canvas.parentElement;
+                const availW = wrap.clientWidth - 32;
+                const availH = wrap.clientHeight - 48;
+                const baseVp = page.getViewport({ scale: 1 });
+                const scale = Math.min(availW / baseVp.width, availH / baseVp.height);
+                const viewport = page.getViewport({ scale });
+
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                return page.render({ canvasContext: ctx, viewport }).promise;
+            }).then(function() {
+                rendering = false;
+                loading.style.display = 'none';
+                canvas.style.display = 'block';
+
+                if (pendingPage !== null) {
+                    const pg = pendingPage;
+                    pendingPage = null;
+                    renderPage(pg);
+                }
+            });
+
+            currentPage = num;
+            currentPageEl.textContent = num;
+            slider.value = num;
+            prevBtn.disabled = num <= 1;
+            nextBtn.disabled = num >= (pdfDoc ? pdfDoc.numPages : 1);
+        }
+
+        pdfjsLib.getDocument('resources/daehyung.pdf').promise.then(function(doc) {
+            pdfDoc = doc;
+            totalPagesEl.textContent = doc.numPages;
+            slider.max = doc.numPages;
+            renderPage(1);
+        });
+
+        prevBtn.addEventListener('click', function() {
+            if (currentPage > 1) renderPage(currentPage - 1);
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (pdfDoc && currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
+        });
+
+        slider.addEventListener('change', function() {
+            renderPage(parseInt(this.value));
+        });
+
+        // 터치 스와이프
+        const stage = document.querySelector('.pdf-carousel-stage');
+        if (stage) {
+            let touchStartX = 0;
+            stage.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+            stage.addEventListener('touchend', function(e) {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) < 50) return;
+                if (diff > 0 && pdfDoc && currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
+                else if (diff < 0 && currentPage > 1) renderPage(currentPage - 1);
+            }, { passive: true });
+        }
     }
 
     /**

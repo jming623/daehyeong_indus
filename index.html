@@ -21,6 +21,7 @@
             <nav class="nav" id="nav">
                 <ul class="nav-list">
                     <li><a href="#about" class="nav-link">회사소개</a></li>
+                    <li><a href="#catalog" class="nav-link">카탈로그</a></li>
                     <li><a href="#products" class="nav-link">제품</a></li>
                     <li><a href="#installations" class="nav-link">설치실적</a></li>
                     <li><a href="#contact" class="nav-link">문의</a></li>
@@ -83,6 +84,35 @@
                         <span class="stat-number">99.9%</span>
                         <span class="stat-label">가동률</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="section catalog" id="catalog">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">제품 카탈로그</h2>
+                <p class="section-subtitle">Product Catalog</p>
+            </div>
+            <div class="pdf-carousel">
+                <div class="pdf-carousel-toolbar">
+                    <span class="pdf-page-info">
+                        <span id="pdfCurrentPage">-</span> / <span id="pdfTotalPages">-</span>
+                    </span>
+                    <a class="pdf-download-btn" href="images/daehyung.pdf" download>↓ PDF 다운로드</a>
+                </div>
+                <div class="pdf-carousel-stage">
+                    <button class="pdf-nav-btn pdf-nav-btn--prev" id="pdfPrev" aria-label="이전 페이지" disabled>&#8592;</button>
+                    <div class="pdf-canvas-wrap" id="pdfCanvasWrap">
+                        <canvas id="pdfCanvas"></canvas>
+                        <div class="pdf-loading" id="pdfLoading">로딩 중…</div>
+                    </div>
+                    <button class="pdf-nav-btn pdf-nav-btn--next" id="pdfNext" aria-label="다음 페이지" disabled>&#8594;</button>
+                </div>
+                <div class="pdf-carousel-slider">
+                    <input type="range" id="pdfSlider" class="pdf-range" min="1" max="1" value="1">
                 </div>
             </div>
         </div>
@@ -439,6 +469,7 @@
                 </div>
                 <div class="footer-links">
                     <a href="#about">회사소개</a>
+                    <a href="#catalog">카탈로그</a>
                     <a href="#products">제품</a>
                     <a href="#installations">설치실적</a>
                     <a href="#contact">문의</a>
@@ -447,6 +478,8 @@
         </div>
     </footer>
 
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- EmailJS 설정 파일 (Git에 커밋되지 않음) -->
